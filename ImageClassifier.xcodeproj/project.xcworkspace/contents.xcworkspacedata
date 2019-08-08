@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HowToAV.xcodeproj">
+      location = "self:/Users/sunghyun_kim/Developer/HowToAV/ImageClassifier.xcodeproj">
    </FileRef>
 </Workspace>

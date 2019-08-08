@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Vision
 
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
@@ -15,15 +16,17 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet weak var captureImageView: UIImageView!
     
+    @IBOutlet weak var detectionLabel: UILabel!
     
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
+    private var requests = [VNRequest]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupVision()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,14 +63,54 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.captureSession.stopRunning()
     }
     
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+    @discardableResult
+    func setupVision() -> NSError? {
+        // Setup Vision parts
+        let error: NSError! = nil
         
+        guard let modelURL = Bundle.main.url(forResource: "ImageClassifier", withExtension: "mlmodelc") else {
+            return NSError(domain: "ViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "모델 파일을 찾을 수 없음"])
+        }
+        do {
+            let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))
+            let objectRecognition = VNCoreMLRequest(model: visionModel, completionHandler: { (request, error) in
+                DispatchQueue.main.async(execute: {
+                    // perform all the UI updates on the main queue
+                    if let results = request.results {
+                        self.showVisionRequestResults(results)
+                    }
+                })
+            })
+            self.requests = [objectRecognition]
+        } catch let error as NSError {
+            print("Model loading went wrong: \(error)")
+        }
+        
+        return error
+    }
+    
+    func showVisionRequestResults(_ results: [Any]) {
+        let top = results[0] as! VNClassificationObservation
+        let second = results[1] as! VNClassificationObservation
+        
+        detectionLabel.text = "\(top.identifier) - \(top.confidence) / \(second.identifier) - \(second.confidence)"
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else {
             return
         }
         
-        let image = UIImage(data: imageData)
-        captureImageView.image = image
+        captureImageView.image = UIImage(data: imageData)
+        
+        let imageRequestHandler = VNImageRequestHandler.init(data: imageData, options: [:])
+        
+        do {
+            try imageRequestHandler.perform(requests)
+        } catch {
+            print(error)
+        }
+        
     }
     
     @IBAction func takePhotoButtonTapped(_ sender: Any) {

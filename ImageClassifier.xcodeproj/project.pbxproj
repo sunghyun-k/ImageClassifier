@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F26D750622FC31DE003D234C /* ImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F26D750522FC31DE003D234C /* ImageClassifier.mlmodel */; };
 		F2EB7FA322FAC35400EA3224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */; };
 		F2EB7FA522FAC35400EA3224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB7FA422FAC35400EA3224 /* ViewController.swift */; };
 		F2EB7FA822FAC35400EA3224 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EB7FA622FAC35400EA3224 /* Main.storyboard */; };
@@ -15,7 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F2EB7F9F22FAC35400EA3224 /* HowToAV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowToAV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F26D750522FC31DE003D234C /* ImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ImageClassifier.mlmodel; sourceTree = "<group>"; };
+		F2EB7F9F22FAC35400EA3224 /* ImageClassifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageClassifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2EB7FA422FAC35400EA3224 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F2EB7FA722FAC35400EA3224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,7 +40,7 @@
 		F2EB7F9622FAC35400EA3224 = {
 			isa = PBXGroup;
 			children = (
-				F2EB7FA122FAC35400EA3224 /* HowToAV */,
+				F2EB7FA122FAC35400EA3224 /* ImageClassifier */,
 				F2EB7FA022FAC35400EA3224 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +48,12 @@
 		F2EB7FA022FAC35400EA3224 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2EB7F9F22FAC35400EA3224 /* HowToAV.app */,
+				F2EB7F9F22FAC35400EA3224 /* ImageClassifier.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F2EB7FA122FAC35400EA3224 /* HowToAV */ = {
+		F2EB7FA122FAC35400EA3224 /* ImageClassifier */ = {
 			isa = PBXGroup;
 			children = (
 				F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */,
@@ -59,17 +61,18 @@
 				F2EB7FA622FAC35400EA3224 /* Main.storyboard */,
 				F2EB7FA922FAC35500EA3224 /* Assets.xcassets */,
 				F2EB7FAB22FAC35500EA3224 /* LaunchScreen.storyboard */,
+				F26D750522FC31DE003D234C /* ImageClassifier.mlmodel */,
 				F2EB7FAE22FAC35500EA3224 /* Info.plist */,
 			);
-			path = HowToAV;
+			path = ImageClassifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F2EB7F9E22FAC35400EA3224 /* HowToAV */ = {
+		F2EB7F9E22FAC35400EA3224 /* ImageClassifier */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2EB7FB122FAC35500EA3224 /* Build configuration list for PBXNativeTarget "HowToAV" */;
+			buildConfigurationList = F2EB7FB122FAC35500EA3224 /* Build configuration list for PBXNativeTarget "ImageClassifier" */;
 			buildPhases = (
 				F2EB7F9B22FAC35400EA3224 /* Sources */,
 				F2EB7F9C22FAC35400EA3224 /* Frameworks */,
@@ -79,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = HowToAV;
+			name = ImageClassifier;
 			productName = HowToAV;
-			productReference = F2EB7F9F22FAC35400EA3224 /* HowToAV.app */;
+			productReference = F2EB7F9F22FAC35400EA3224 /* ImageClassifier.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2EB7F9A22FAC35400EA3224 /* Build configuration list for PBXProject "HowToAV" */;
+			buildConfigurationList = F2EB7F9A22FAC35400EA3224 /* Build configuration list for PBXProject "ImageClassifier" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F2EB7F9E22FAC35400EA3224 /* HowToAV */,
+				F2EB7F9E22FAC35400EA3224 /* ImageClassifier */,
 			);
 		};
 /* End PBXProject section */
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2EB7FA522FAC35400EA3224 /* ViewController.swift in Sources */,
+				F26D750622FC31DE003D234C /* ImageClassifier.mlmodel in Sources */,
 				F2EB7FA322FAC35400EA3224 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,12 +288,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54QJQV3G77;
-				INFOPLIST_FILE = HowToAV/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ImageClassifier/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "sunghyun-k.HowToAV";
+				PRODUCT_BUNDLE_IDENTIFIER = "sunghyun-k.ImageClassifier";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -302,12 +306,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54QJQV3G77;
-				INFOPLIST_FILE = HowToAV/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ImageClassifier/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "sunghyun-k.HowToAV";
+				PRODUCT_BUNDLE_IDENTIFIER = "sunghyun-k.ImageClassifier";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -317,7 +321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F2EB7F9A22FAC35400EA3224 /* Build configuration list for PBXProject "HowToAV" */ = {
+		F2EB7F9A22FAC35400EA3224 /* Build configuration list for PBXProject "ImageClassifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2EB7FAF22FAC35500EA3224 /* Debug */,
@@ -326,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2EB7FB122FAC35500EA3224 /* Build configuration list for PBXNativeTarget "HowToAV" */ = {
+		F2EB7FB122FAC35500EA3224 /* Build configuration list for PBXNativeTarget "ImageClassifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2EB7FB222FAC35500EA3224 /* Debug */,

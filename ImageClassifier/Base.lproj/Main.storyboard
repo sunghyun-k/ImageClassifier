@@ -19,37 +19,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vb0-Kk-Xp5">
-                                <rect key="frame" x="10" y="30" width="300" height="548"/>
+                                <rect key="frame" x="10" y="30" width="300" height="528"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-J3-aYG">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="405"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ImE-J3-aYG" secondAttribute="height" multiplier="3:4" id="fds-RG-f0i"/>
+                                        </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dJ-Z8-XnM">
+                                        <rect key="frame" x="0.0" y="408" width="300" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Zk-pL-w1X">
-                                        <rect key="frame" x="0.0" y="413" width="300" height="135"/>
+                                        <rect key="frame" x="0.0" y="448" width="300" height="80"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l95-nu-E4j">
-                                                <rect key="frame" x="0.0" y="0.0" width="76" height="135"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="80"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <state key="normal" title="Take Photo"/>
                                                 <connections>
                                                     <action selector="takePhotoButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R82-yG-8Qc"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CTc-cy-aNA">
-                                                <rect key="frame" x="84" y="0.0" width="216" height="135"/>
+                                                <rect key="frame" x="240" y="0.0" width="60" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="CTc-cy-aNA" secondAttribute="height" multiplier="3:4" id="bSR-rA-SAm"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ImE-J3-aYG" firstAttribute="height" secondItem="CTc-cy-aNA" secondAttribute="height" multiplier="3" id="Ga7-ZM-ehf"/>
+                                    <constraint firstItem="ImE-J3-aYG" firstAttribute="height" secondItem="CTc-cy-aNA" secondAttribute="height" multiplier="5" id="Ga7-ZM-ehf"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vb0-Kk-Xp5" secondAttribute="trailing" constant="10" id="Ae9-Uw-Mr0"/>
-                            <constraint firstItem="Vb0-Kk-Xp5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="10" id="L9F-XY-mhG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vb0-Kk-Xp5" secondAttribute="bottom" constant="10" id="L9F-XY-mhG"/>
                             <constraint firstItem="Vb0-Kk-Xp5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="id9-8l-Gzw"/>
                             <constraint firstItem="Vb0-Kk-Xp5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="mpN-bX-jiW"/>
                         </constraints>
@@ -57,6 +70,7 @@
                     </view>
                     <connections>
                         <outlet property="captureImageView" destination="CTc-cy-aNA" id="YYV-X7-IiM"/>
+                        <outlet property="detectionLabel" destination="5dJ-Z8-XnM" id="3ku-6t-zaI"/>
                         <outlet property="previewView" destination="ImE-J3-aYG" id="oBM-IB-ilw"/>
                     </connections>
                 </viewController>
