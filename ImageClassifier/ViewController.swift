@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  HowToAV
+//  ImageClassifier
 //
 //  Created by 김성현 on 07/08/2019.
 //  Copyright © 2019 김성현. All rights reserved.
@@ -12,99 +12,134 @@ import Vision
 
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
+    //MARK: 프로퍼티
+    
     @IBOutlet weak var previewView: UIView!
-    
     @IBOutlet weak var captureImageView: UIImageView!
-    
     @IBOutlet weak var detectionLabel: UILabel!
     
-    var captureSession: AVCaptureSession!
-    var stillImageOutput: AVCapturePhotoOutput!
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    private var session = AVCaptureSession()
+    private var stillImageOutput = AVCapturePhotoOutput()
+    private var videoPreviewLayer = AVCaptureVideoPreviewLayer()
     
     private var requests = [VNRequest]()
     
+    //MARK: 뷰 생명 주기
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAVCapture()
         setupVision()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // 새로운 세션을 생성합니다.
-        captureSession = AVCaptureSession()
-        // 세션을 고해상도 스틸 이미지 캡쳐로 설정합니다. 프리셋을 사용하여 간단하게 설정할 수 있습니다.
-        captureSession.sessionPreset = .medium
-        
-        guard let backCamera = AVCaptureDevice.default(for: .video) else {
-            print("Unable to access back camera!")
-            return
-        }
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: backCamera)
-            stillImageOutput = AVCapturePhotoOutput()
-            
-            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
-                captureSession.addInput(input)
-                captureSession.addOutput(stillImageOutput)
-                setupLivePreview()
-            }
-            
-        } catch {
-            print("후면 카메라를 초기화하는데에 오류가 발생했습니다: \(error)")
-        }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.captureSession.stopRunning()
+        self.session.stopRunning()
     }
+    
+    //MARK: AV 캡쳐
+    
+    func setupAVCapture() {
+        var deviceInput: AVCaptureDeviceInput
+        
+        // 세션을 고해상도 스틸 이미지 캡쳐로 설정합니다. 프리셋을 사용하여 간단하게 설정할 수 있습니다.
+        session.sessionPreset = .medium
+        
+        // 비디오 장치를 선택해 입력 장치로 만듭니다.
+        guard let videoDevice = AVCaptureDevice.default(for: .video) else {
+            print("후면 카메라에 접근할 수 없음")
+            return
+        }
+        do {
+            deviceInput = try AVCaptureDeviceInput(device: videoDevice)
+        } catch {
+            print("비디오 입력 장치를 생성할 수 없음: \(error)")
+            return
+        }
+        
+        guard session.canAddInput(deviceInput) else {
+            print("세션에 비디오 입력 장치를 추가할 수 없음")
+            session.commitConfiguration()
+            return
+        }
+        session.addInput(deviceInput)
+        
+        guard session.canAddOutput(stillImageOutput) else {
+            print("세션에 비디오 출력 장치를 추가할 수 없음")
+            session.commitConfiguration()
+            return
+        }
+        session.addOutput(stillImageOutput)
+        
+        setupLivePreview()
+    }
+    
+    func setupLivePreview() {
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+        
+        videoPreviewLayer.videoGravity = .resizeAspect
+        videoPreviewLayer.connection?.videoOrientation = .portrait
+        previewView.layer.addSublayer(videoPreviewLayer)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.session.startRunning()
+            
+            DispatchQueue.main.async {
+                self.videoPreviewLayer.frame = self.previewView.bounds
+            }
+        }
+    }
+    
+    //MARK: Vision
     
     @discardableResult
     func setupVision() -> NSError? {
-        // Setup Vision parts
+        // Vision 파트들을 설정합니다.
         let error: NSError! = nil
         
         guard let modelURL = Bundle.main.url(forResource: "ImageClassifier", withExtension: "mlmodelc") else {
             return NSError(domain: "ViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "모델 파일을 찾을 수 없음"])
         }
+        
+        // Vision 모델로부터 VNCoreMLRequest를 생성하여 requests 배열에 넣습니다.
         do {
-            let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))
+            let mlModel = try MLModel(contentsOf: modelURL)
+            let visionModel = try VNCoreMLModel(for: mlModel)
             let objectRecognition = VNCoreMLRequest(model: visionModel, completionHandler: { (request, error) in
                 DispatchQueue.main.async(execute: {
-                    // perform all the UI updates on the main queue
+                    // 모든 UI 업데이트는 main queue에서 하십시오.
                     if let results = request.results {
                         self.showVisionRequestResults(results)
                     }
                 })
             })
-            self.requests = [objectRecognition]
+            requests = [objectRecognition]
         } catch let error as NSError {
-            print("Model loading went wrong: \(error)")
+            print("모델을 로드하는 중 오류 발생: \(error)")
         }
         
         return error
     }
     
     func showVisionRequestResults(_ results: [Any]) {
+        // 가장 높은 첫번째와 두번째 식별 결과를 Label에 표시합니다.
         let top = results[0] as! VNClassificationObservation
         let second = results[1] as! VNClassificationObservation
-        
         detectionLabel.text = "\(top.identifier) - \(top.confidence) / \(second.identifier) - \(second.confidence)"
     }
     
+    //MARK: AVCapturePhotoCaptureDelegate
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        // 캡쳐 이미지로부터 Data를 만듭니다.
         guard let imageData = photo.fileDataRepresentation() else {
             return
         }
-        
+        // 뷰에 스틸 이미지를 업데이트합니다.
         captureImageView.image = UIImage(data: imageData)
         
-        let imageRequestHandler = VNImageRequestHandler.init(data: imageData, options: [:])
-        
+        // 이미지 요청 처리기를 만들고 요청을 수행합니다.
+        let imageRequestHandler = VNImageRequestHandler(data: imageData, options: [:])
         do {
             try imageRequestHandler.perform(requests)
         } catch {
@@ -113,26 +148,14 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         
     }
     
+    //MARK: 액션
+    
     @IBAction func takePhotoButtonTapped(_ sender: Any) {
         
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
     
-    func setupLivePreview() {
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        
-        videoPreviewLayer.videoGravity = .resizeAspect
-        videoPreviewLayer.connection?.videoOrientation = .portrait
-        previewView.layer.addSublayer(videoPreviewLayer)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.captureSession.startRunning()
-            
-            DispatchQueue.main.async {
-                self.videoPreviewLayer.frame = self.previewView.bounds
-            }
-        }
-    }
+    
 }
 

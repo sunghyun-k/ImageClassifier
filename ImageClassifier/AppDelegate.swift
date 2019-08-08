@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  HowToAV
+//  ImageClassifier
 //
 //  Created by 김성현 on 07/08/2019.
 //  Copyright © 2019 김성현. All rights reserved.
