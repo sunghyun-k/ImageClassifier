@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F242E6D622FE89AC003430CC /* screenshots.png in Resources */ = {isa = PBXBuildFile; fileRef = F242E6D522FE89AC003430CC /* screenshots.png */; };
+		F23B91AA22FEBD4600746369 /* screenshots.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F23B91A922FEBD4600746369 /* screenshots.jpg */; };
 		F272840422FEB6DF00349CA0 /* ComponentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F272840322FEB6DF00349CA0 /* ComponentClassifier.mlmodel */; };
 		F2EB7FA322FAC35400EA3224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */; };
 		F2EB7FA522FAC35400EA3224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB7FA422FAC35400EA3224 /* ViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F242E6D522FE89AC003430CC /* screenshots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshots.png; sourceTree = "<group>"; };
+		F23B91A922FEBD4600746369 /* screenshots.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshots.jpg; sourceTree = "<group>"; };
 		F272840322FEB6DF00349CA0 /* ComponentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = ComponentClassifier.mlmodel; path = ComponentClassifier.mlproj/Models/ComponentClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
 		F2A0CD0322FE67EE002F7743 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F2EB7F9F22FAC35400EA3224 /* ImageClassifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageClassifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +43,7 @@
 		F24A56C522FE6C0400DF2AED /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				F242E6D522FE89AC003430CC /* screenshots.png */,
+				F23B91A922FEBD4600746369 /* screenshots.jpg */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -139,8 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2EB7FAD22FAC35500EA3224 /* LaunchScreen.storyboard in Resources */,
-				F242E6D622FE89AC003430CC /* screenshots.png in Resources */,
 				F2EB7FAA22FAC35500EA3224 /* Assets.xcassets in Resources */,
+				F23B91AA22FEBD4600746369 /* screenshots.jpg in Resources */,
 				F2EB7FA822FAC35400EA3224 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
