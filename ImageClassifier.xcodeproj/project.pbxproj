@@ -41,6 +41,7 @@
 		F2EB7F9622FAC35400EA3224 = {
 			isa = PBXGroup;
 			children = (
+				F2A0CD0322FE67EE002F7743 /* README.md */,
 				F2EB7FA122FAC35400EA3224 /* ImageClassifier */,
 				F2EB7FA022FAC35400EA3224 /* Products */,
 			);
@@ -57,7 +58,6 @@
 		F2EB7FA122FAC35400EA3224 /* ImageClassifier */ = {
 			isa = PBXGroup;
 			children = (
-				F2A0CD0322FE67EE002F7743 /* README.md */,
 				F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */,
 				F2EB7FA422FAC35400EA3224 /* ViewController.swift */,
 				F2EB7FA622FAC35400EA3224 /* Main.storyboard */,
