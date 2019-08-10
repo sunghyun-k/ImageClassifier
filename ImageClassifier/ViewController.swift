@@ -120,7 +120,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     func showVisionRequestResults(_ results: [Any]) {
-        // 가장 높은 첫번째와 두번째 식별 결과를 Label에 표시합니다.
+        // 가장 높은 신뢰도의 식별 결과를 Label에 표시합니다.
         guard let top = results[0] as? VNClassificationObservation else { return }
         
         detectionLabel.text = "\(top.identifier) - \(top.confidence * 100)%"
