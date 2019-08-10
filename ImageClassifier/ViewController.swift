@@ -95,7 +95,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // Vision 파트들을 설정합니다.
         let error: NSError! = nil
         
-        guard let modelURL = Bundle.main.url(forResource: "RobotComponentClassifier", withExtension: "mlmodelc") else {
+        guard let modelURL = Bundle.main.url(forResource: "ComponentClassifier", withExtension: "mlmodelc") else {
             return NSError(domain: "ViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "모델 파일을 찾을 수 없음"])
         }
         
