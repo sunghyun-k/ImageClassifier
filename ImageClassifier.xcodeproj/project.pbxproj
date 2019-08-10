@@ -17,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		F26D750522FC31DE003D234C /* ImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ImageClassifier.mlmodel; sourceTree = "<group>"; };
+		F2A0CD0322FE67EE002F7743 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F2EB7F9F22FAC35400EA3224 /* ImageClassifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageClassifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2EB7FA422FAC35400EA3224 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +57,7 @@
 		F2EB7FA122FAC35400EA3224 /* ImageClassifier */ = {
 			isa = PBXGroup;
 			children = (
+				F2A0CD0322FE67EE002F7743 /* README.md */,
 				F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */,
 				F2EB7FA422FAC35400EA3224 /* ViewController.swift */,
 				F2EB7FA622FAC35400EA3224 /* Main.storyboard */,
