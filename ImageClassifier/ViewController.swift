@@ -12,15 +12,19 @@ import Vision
 
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
-    //MARK: 프로퍼티
+    //MARK: View 프로퍼티
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureImageView: UIImageView!
     @IBOutlet weak var detectionLabel: UILabel!
     
+    //MARK: AVCapture 프로퍼티
+    
     private var session = AVCaptureSession()
     private var stillImageOutput = AVCapturePhotoOutput()
     private var videoPreviewLayer = AVCaptureVideoPreviewLayer()
+    
+    //MARK: Vision 프로퍼티
     
     private var requests = [VNRequest]()
     
@@ -29,12 +33,8 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAVCapture()
+        setupLivePreview()
         setupVision()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.session.stopRunning()
     }
     
     //MARK: AV 캡쳐
@@ -70,8 +70,6 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             return
         }
         session.addOutput(stillImageOutput)
-        
-        setupLivePreview()
     }
     
     func setupLivePreview() {
@@ -123,8 +121,8 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func showVisionRequestResults(_ results: [Any]) {
         // 가장 높은 첫번째와 두번째 식별 결과를 Label에 표시합니다.
-        let top = results[0] as! VNClassificationObservation
-        let second = results[1] as! VNClassificationObservation
+        guard let top = results[0] as? VNClassificationObservation else { return }
+        guard let second = results[1] as? VNClassificationObservation else { return }
         detectionLabel.text = "\(top.identifier) - \(top.confidence) / \(second.identifier) - \(second.confidence)"
     }
     
@@ -151,11 +149,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     //MARK: 액션
     
     @IBAction func takePhotoButtonTapped(_ sender: Any) {
-        
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
-    
-    
 }
-
