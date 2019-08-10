@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F24A56C722FE6C2B00DF2AED /* Dog Screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = F24A56C622FE6C2B00DF2AED /* Dog Screenshot.png */; };
-		F24A56C922FE6DBD00DF2AED /* Cat Screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = F24A56C822FE6DBD00DF2AED /* Cat Screenshot.png */; };
+		F24A56C722FE6C2B00DF2AED /* dog_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = F24A56C622FE6C2B00DF2AED /* dog_screenshot.png */; };
+		F24A56C922FE6DBD00DF2AED /* cat_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = F24A56C822FE6DBD00DF2AED /* cat_screenshot.png */; };
 		F26D750622FC31DE003D234C /* ImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F26D750522FC31DE003D234C /* ImageClassifier.mlmodel */; };
 		F2EB7FA322FAC35400EA3224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB7FA222FAC35400EA3224 /* AppDelegate.swift */; };
 		F2EB7FA522FAC35400EA3224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB7FA422FAC35400EA3224 /* ViewController.swift */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F24A56C622FE6C2B00DF2AED /* Dog Screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dog Screenshot.png"; sourceTree = "<group>"; };
-		F24A56C822FE6DBD00DF2AED /* Cat Screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cat Screenshot.png"; sourceTree = "<group>"; };
+		F24A56C622FE6C2B00DF2AED /* dog_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog_screenshot.png; sourceTree = "<group>"; };
+		F24A56C822FE6DBD00DF2AED /* cat_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_screenshot.png; sourceTree = "<group>"; };
 		F26D750522FC31DE003D234C /* ImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ImageClassifier.mlmodel; sourceTree = "<group>"; };
 		F2A0CD0322FE67EE002F7743 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F2EB7F9F22FAC35400EA3224 /* ImageClassifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageClassifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,8 +45,8 @@
 		F24A56C522FE6C0400DF2AED /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				F24A56C622FE6C2B00DF2AED /* Dog Screenshot.png */,
-				F24A56C822FE6DBD00DF2AED /* Cat Screenshot.png */,
+				F24A56C622FE6C2B00DF2AED /* dog_screenshot.png */,
+				F24A56C822FE6DBD00DF2AED /* cat_screenshot.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -142,9 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2EB7FAD22FAC35500EA3224 /* LaunchScreen.storyboard in Resources */,
-				F24A56C922FE6DBD00DF2AED /* Cat Screenshot.png in Resources */,
+				F24A56C922FE6DBD00DF2AED /* cat_screenshot.png in Resources */,
 				F2EB7FAA22FAC35500EA3224 /* Assets.xcassets in Resources */,
-				F24A56C722FE6C2B00DF2AED /* Dog Screenshot.png in Resources */,
+				F24A56C722FE6C2B00DF2AED /* dog_screenshot.png in Resources */,
 				F2EB7FA822FAC35400EA3224 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
