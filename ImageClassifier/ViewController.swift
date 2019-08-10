@@ -95,7 +95,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // Vision 파트들을 설정합니다.
         let error: NSError! = nil
         
-        guard let modelURL = Bundle.main.url(forResource: "ImageClassifier", withExtension: "mlmodelc") else {
+        guard let modelURL = Bundle.main.url(forResource: "RobotComponentClassifier", withExtension: "mlmodelc") else {
             return NSError(domain: "ViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "모델 파일을 찾을 수 없음"])
         }
         
@@ -122,8 +122,8 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     func showVisionRequestResults(_ results: [Any]) {
         // 가장 높은 첫번째와 두번째 식별 결과를 Label에 표시합니다.
         guard let top = results[0] as? VNClassificationObservation else { return }
-        guard let second = results[1] as? VNClassificationObservation else { return }
-        detectionLabel.text = "\(top.identifier) - \(top.confidence) / \(second.identifier) - \(second.confidence)"
+        
+        detectionLabel.text = "\(top.identifier) - \(top.confidence * 100)%"
     }
     
     //MARK: AVCapturePhotoCaptureDelegate
