@@ -95,23 +95,31 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // Vision 파트들을 설정합니다.
         let error: NSError! = nil
         
+        // ML 모델 URL을 생성합니다.
         guard let modelURL = Bundle.main.url(forResource: "ComponentClassifier", withExtension: "mlmodelc") else {
             return NSError(domain: "ViewController", code: -1, userInfo: [NSLocalizedDescriptionKey: "모델 파일을 찾을 수 없음"])
         }
         
-        // Vision 모델로부터 VNCoreMLRequest를 생성하여 requests 배열에 넣습니다.
         do {
+            
+            // ML 모델을 Vision 모델로 만듭니다.
             let mlModel = try MLModel(contentsOf: modelURL)
             let visionModel = try VNCoreMLModel(for: mlModel)
+            
+            // Vision 모델로부터 VNCoreMLRequest를 생성합니다.
             let objectRecognition = VNCoreMLRequest(model: visionModel, completionHandler: { (request, error) in
+                // completionHandler에서는 Vision 요청의 결과에 대한 처리 방법을 구성합니다.
                 DispatchQueue.main.async(execute: {
-                    // 모든 UI 업데이트는 main queue에서 하십시오.
+                    // 모든 UI 업데이트는 main queue에서 합니다.
                     if let results = request.results {
                         self.showVisionRequestResults(results)
                     }
                 })
             })
+            
+            // VNCoreMLRequest를 requests에 넣습니다.
             requests = [objectRecognition]
+            
         } catch let error as NSError {
             print("모델을 로드하는 중 오류 발생: \(error)")
         }
@@ -129,14 +137,16 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     //MARK: AVCapturePhotoCaptureDelegate
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
         // 캡쳐 이미지로부터 Data를 만듭니다.
         guard let imageData = photo.fileDataRepresentation() else {
             return
         }
+        
         // 뷰에 스틸 이미지를 업데이트합니다.
         captureImageView.image = UIImage(data: imageData)
         
-        // 이미지 요청 처리기를 만들고 요청을 수행합니다.
+        // 캡쳐한 이미지에 대한 요청 처리기를 만들고 요청을 수행합니다.
         let imageRequestHandler = VNImageRequestHandler(data: imageData, options: [:])
         do {
             try imageRequestHandler.perform(requests)
